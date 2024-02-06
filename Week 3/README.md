@@ -1,0 +1,1 @@
+This assignment was actually rather simple and made alot of sense to me. The few instances of trouble I had, I was able to figure it out which was enjoyable to no struggle. 
