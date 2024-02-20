@@ -1,0 +1,10 @@
+body
+{
+background-color: azure;
+}
+
+.divTable
+{
+    display: table;
+    width: 100%;
+}
