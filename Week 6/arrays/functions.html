@@ -1,0 +1,28 @@
+<html>
+
+    <head>
+        <title>
+            JSON FTW
+        </title>
+        <script>
+            function setInformation()
+            {
+                var information = new Array();
+                information.push(goNextPage());
+
+                information[0];
+                
+            }
+            
+            function goNextPage()
+            {
+                window.location = "Page2.html";
+            }
+        </script>
+    </head>
+    <body onload="setInformation();">
+        <div id="info"></div>
+        <br>
+        <button id="btnSubmit" onclick="goNextPage();">Go to Next Page</button>
+    </body>
+</html>
