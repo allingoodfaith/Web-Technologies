@@ -1,0 +1,26 @@
+#square
+{
+   width: 75px;
+   height: 75px;
+   background: rgb(98, 149, 190);
+   position: absolute;
+   left: 0;
+   top: 400;
+}
+
+.stuff
+{
+    background: rgb(168, 134, 177);
+    color: black;
+}
+
+#third
+{
+    background:rgb(127, 86, 128);
+    color: black;
+}
+
+body
+{
+    background-color: beige;
+}
