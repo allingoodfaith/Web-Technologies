@@ -1,0 +1,5 @@
+<monster high character>
+    <Character> Frankie Stein </Character>
+    <parent> Victor Stein </parent>
+    <Age> 15 days old </Age>
+</monster high character>

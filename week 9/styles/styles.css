@@ -1,0 +1,15 @@
+body {
+	background: #fff;
+	color: #1b0025;
+	cursor: default;
+	display: flex;
+	flex-direction: column;
+	font-family: 'Courier New', Courier, monospace;
+    font-size: 12;
+	justify-content: center;
+	margin: 4em auto;
+	max-width: calc(100% - 2em);
+	min-height: calc(100vh - 8em);
+	text-transform: lowercase;
+	width: 30em;
+}
