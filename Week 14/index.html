@@ -17,7 +17,138 @@
 
         <script>
 
-                var geometry = new THREE.BoxGeometry();
+            var scene = new THREE.scene();
+            var camera = new THREE.PerspectiveCamera(75, window.innerWidth / window.innerHeight, 0.1, 1000);
+            var cube, cube2;
+            var modelObject;
+
+            function CreateBox()
+            {
+                var geometry = THREE.BoxGeometry();
+                var material = THREE.MeshBasicMaterial({color: b778ca})
+                cube = new THREE.Mesh(geometry, material);
+                cube.position.set(50, 0, 0);
+                scene.add(cube);
+                cube.scale.x = 10; 
+                cube.scale.y = 10; 
+                cube.scale.z = 10;
+                
+                animate()
+            }
+
+            function animate() 
+            {
+            requestAnimationFrame(animate);
+            cube.rotation.x += 0.01;
+            cube.rotation.y += 0.01;
+            createBox2();
+            renderer.render(scene, camera);
+            }
+
+            function createBox2()
+            {
+                var geometry = THREE.BoxGeometry();
+                var material = THREE.MeshBasicMaterial({color: b778ca})
+                cube = new THREE.Mesh(geometry, material);
+                cube.position.set(3, 0, 0);
+                scene.add(cube2);
+                cube.scale.x = .3; 
+                cube.scale.y = .3; 
+                cube.scale.z = .3;
+                
+                animate2()
+            }
+
+            function animate2()
+            {
+                requestAnimationFrame(animate2);
+                cube2.rotation.x += .5;
+                cube2.rotation.y += .5;
+            }
+
+            function getScene() 
+            {
+            var scene = new THREE.Scene();
+            scene.background = new THREE.Color(0xaaaaaa);
+            return scene;
+            }
+
+            function getCamera() 
+            {
+            var aspectRatio = window.innerWidth / window.innerHeight;
+            var camera = new THREE.PerspectiveCamera(75, aspectRatio, 0.1, 1000);
+            camera.position.set(0, 90, -10);
+            return camera;
+            }
+
+            function getLight(scene) 
+            {
+            var light = new THREE.PointLight(0xffffff, 1, 0);
+            light.position.set(20, 50, 20);
+            scene.add(light);
+
+            var ambientLight = new THREE.AmbientLight(0x111111);
+            scene.add(ambientLight);
+            return light;
+            }
+
+            function getRenderer()
+            {
+                var renderer = new THREE.WebGLRenderer({antialias: true});
+                renderer.setPixelRatio(window.devicePixelRatio);
+                renderer.setSize(window.innerWidth, window.innerHeight);
+                document.body.appendChild(renderer.domElement);
+                return renderer;
+            }
+
+            function getControls(camera, renderer) 
+            {
+                var controls = new THREE.TrackballControls(camera, renderer.domElement);
+                controls.zoomSpeed = 0.4;
+                controls.panSpeed = 0.4;
+                return controls;
+            }
+
+            function loadModel() 
+            {
+                loader = new THREE.GLTFLoader();
+                loader.load('models/Crystal.glb', function (object) 
+                {
+                object.rotation.z = Math.PI;
+                modelObject = object;
+                scene.add(object);
+                animateModel();
+            });
+            }
+
+            function animateModel() 
+            {
+                requestAnimationFrame(animateModel);
+                modelObject.rotation.x += 0.05;
+                modelObject.rotation.y += 0.05;
+            }
+
+            function render() 
+            {
+                requestAnimationFrame(render);
+                renderer.render(scene, camera);
+                controls.update();
+                
+            };
+
+            var scene = getScene();
+            var camera = getCamera();
+            var light = getLight(scene);
+            var renderer = getRenderer();
+            var controls = getControls(camera, renderer);
+            var game1 = createBox();
+
+
+            loadModel()
+
+            render();
+
+            /*    var geometry = new THREE.BoxGeometry();
                 var material = new THREE.MeshBasicMaterial({
                     color: 0x00ff00
                 });
@@ -124,6 +255,8 @@
             loadModel()
 
             render();
+
+        */
         </script>
     </body>
 </html>
