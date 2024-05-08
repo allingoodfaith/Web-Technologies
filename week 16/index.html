@@ -56,13 +56,13 @@
         );
 
         var mountainMat = new BABYLON.StandardMaterial("mountainMat",scene)
-        mountainMat.ambientColor = new BABYLON.Colors(113, 120, 119)
+        mountainMat.ambientColor = new BABYLON.Color3(113, 120, 119)
 
         var groundMat = new BABYLON.StandardMaterial("groundMat", scene)
-        groundMat = new BABYLON.Colors(80,110,66)
+        groundMat = new BABYLON.Color3(80,110,66)
 
         var waterMat = new BABYLON.StandardMaterial("waterMat", scene)
-        waterMat = new BABYLON.Colors(84, 167, 196)
+        waterMat = new BABYLON.Color3(84, 167, 196)
 
         // Default intensity is 1. Let's dim the light a small amount
         light.intensity = 0.7;
@@ -93,6 +93,8 @@
         box2.rotation.z = BABYLON.Tools.ToRadians(45);
 
         box2.material = mountainMat; 
+
+        
 
         const box3 = BABYLON.MeshBuilder.CreateBox("box", { size:2, sideOrientation:6}, scene);
 
@@ -152,15 +154,22 @@
         box7.rotation.x = BABYLON.Tools.ToRadians(20);
         box7.rotation.z = BABYLON.Tools.ToRadians(45);
 
-        box7.material = mountainMat; 
+        box7.material = mountainMat;
+        
 
-        const cylinder = BABYLON.MeshBuilder.CreateCylinder("cylinder", {height:.1, diameter:2}, scene);
+        
+        const cylinder = BABYLON.MeshBuilder.CreateCylinder("cylinder", {},scene);
 
+        /*
         cylinder.position.y = -.02;
         cylinder.position.z = -1.25;
         cylinder.position.x = 0;
 
         cylinder.material = waterMat; 
+        
+        
+        
+        
 
         const cylinder2 = BABYLON.MeshBuilder.CreateCylinder("cylinder", {height:.1, diameter:1.5}, scene);
 
@@ -169,17 +178,24 @@
         cylinder2.position.x = -.5;
 
         cylinder2.material = waterMat; 
+
+*/        
       
-        const plane = BABYLON.MeshBuilder.CreatePlane("plane", scene);
+       /* const plane = BABYLON.MeshBuilder.CreatePlane("plane", scene);
 
         plane.position.y = 0;
         plane.position.x = 0;
         plane.position.z = 2;
 
+        */
+
+
         const myParticleSystem = new BABYLON.ParticleSystem("particles",2000);
-        particleSystem.particleTexture = new BABYLON.texture();
-        particleSystem.emitter = plane;
-        particleSystem.start();
+       // myParticleSystem.particleTexture = new BABYLON.Texture("");
+        myParticleSystem.emitter = box;
+        myParticleSystem.start();
+
+        
 
         // Our built-in 'ground' shape.
         var ground = BABYLON.MeshBuilder.CreateGround("ground",{ width: 6, height: 6 },scene);
@@ -187,6 +203,7 @@
 
         return scene;
       };
+      
       const canvas = document.getElementById("renderCanvas"); // Get the canvas element
       const engine = new BABYLON.Engine(canvas, true); // Generate the BABYLON 3D engine
 
