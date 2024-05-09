@@ -1,0 +1,224 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <title>Babylon Template</title>
+
+    <style>
+      html,
+      body {
+        overflow: hidden;
+        width: 100%;
+        height: 100%;
+        margin: 0;
+        padding: 0;
+      }
+
+      #renderCanvas {
+        width: 100%;
+        height: 100%;
+        touch-action: none;
+      }
+    </style>
+
+    <script src="https://cdn.babylonjs.com/babylon.js"></script>
+    <script src="https://cdn.babylonjs.com/loaders/babylonjs.loaders.min.js"></script>
+    <script src="https://code.jquery.com/pep/0.4.3/pep.js"></script>
+  </head>
+
+  <body>
+    <canvas id="renderCanvas" touch-action="none"></canvas>
+    <!-- touch-action="none" for best results from PEP -->
+
+    <script>
+      var createScene = function () {
+        // This creates a basic Babylon Scene object (non-mesh)
+        var scene = new BABYLON.Scene(engine);
+
+        // This creates and positions a free camera (non-mesh)
+        var camera = new BABYLON.FreeCamera(
+          "camera1",
+          new BABYLON.Vector3(0, 5, -10),
+          scene
+        );
+
+        // This targets the camera to scene origin
+        camera.setTarget(BABYLON.Vector3.Zero());
+
+        // This attaches the camera to the canvas
+        camera.attachControl(canvas, true);
+
+        // This creates a light, aiming 0,1,0 - to the sky (non-mesh)
+        var light = new BABYLON.HemisphericLight(
+          "light",
+          new BABYLON.Vector3(0, 1, 0),
+          scene
+        );
+
+        var mountainMat = new BABYLON.StandardMaterial(scene)
+        mountainMat = new BABYLON.Color3(113, 120, 119)
+
+        var groundMat = new BABYLON.StandardMaterial(scene)
+        groundMat = new BABYLON.Color3(80,110,66)
+
+        var waterMat = new BABYLON.StandardMaterial(scene)
+        waterMat = new BABYLON.Color3(84, 167, 196)
+
+        // Default intensity is 1. Let's dim the light a small amount
+        light.intensity = 0.7;
+
+
+      
+        
+        const box = BABYLON.MeshBuilder.CreateBox("box", { size:3, sideOrientation:6,}, scene);
+
+        box.position.y = -.5;
+        box.position.z = 3;
+        //box.position.x = ;
+
+        box.rotation.y = BABYLON.Tools.ToRadians(10);
+        box.rotation.x = BABYLON.Tools.ToRadians(20);
+        box.rotation.z = BABYLON.Tools.ToRadians(45);
+
+        box.material = mountainMat; 
+        
+        const box2 = BABYLON.MeshBuilder.CreateBox("box", { size:2, sideOrientation:6}, scene);
+
+        box2.position.y = -.5;
+        box2.position.z = 2;
+        box2.position.x = 1.5;
+
+        box2.rotation.y = BABYLON.Tools.ToRadians(10);
+        box2.rotation.x = BABYLON.Tools.ToRadians(20);
+        box2.rotation.z = BABYLON.Tools.ToRadians(45);
+
+        box2.material = mountainMat; 
+
+        
+
+        const box3 = BABYLON.MeshBuilder.CreateBox("box", { size:2, sideOrientation:6}, scene);
+
+        box3.position.y = -.5;
+        box3.position.z = 2;
+        box3.position.x = -1.5;
+
+        box3.rotation.y = BABYLON.Tools.ToRadians(10);
+        box3.rotation.x = BABYLON.Tools.ToRadians(20);
+        box3.rotation.z = BABYLON.Tools.ToRadians(45);
+
+        box3.material = mountainMat; 
+
+        const box4 = BABYLON.MeshBuilder.CreateBox("box", { size:1.5, sideOrientation:6}, scene);
+
+        box4.position.y = -.5;
+        box4.position.z = 1;
+        box4.position.x = -1.5;
+
+        box4.rotation.y = BABYLON.Tools.ToRadians(10);
+        box4.rotation.x = BABYLON.Tools.ToRadians(20);
+        box4.rotation.z = BABYLON.Tools.ToRadians(45);
+
+        box4.material = mountainMat; 
+
+        const box5 = BABYLON.MeshBuilder.CreateBox("box", { size:1.5, sideOrientation:6}, scene);
+
+        box5.position.y = -.5;
+        box5.position.z = 1;
+        box5.position.x = 1.5;
+
+        box5.rotation.y = BABYLON.Tools.ToRadians(10);
+        box5.rotation.x = BABYLON.Tools.ToRadians(20);
+        box5.rotation.z = BABYLON.Tools.ToRadians(45);
+
+        box5.material = mountainMat; 
+
+        const box6 = BABYLON.MeshBuilder.CreateBox("box", { size:1.75, sideOrientation:6}, scene);
+
+        box6.position.y = -.5;
+        box6.position.z = 1;
+        box6.position.x = .5;
+
+        box6.rotation.y = BABYLON.Tools.ToRadians(10);
+        box6.rotation.x = BABYLON.Tools.ToRadians(20);
+        box6.rotation.z = BABYLON.Tools.ToRadians(45);
+
+        box6.material = mountainMat;
+
+        const box7 = BABYLON.MeshBuilder.CreateBox("box", { size:1.4, sideOrientation:6}, scene);
+
+        box7.position.y = -.5;
+        box7.position.z = 1;
+        box7.position.x = -.3;
+
+        box7.rotation.y = BABYLON.Tools.ToRadians(10);
+        box7.rotation.x = BABYLON.Tools.ToRadians(20);
+        box7.rotation.z = BABYLON.Tools.ToRadians(45);
+
+        box7.material = mountainMat;
+        
+
+        
+        const cylinder = BABYLON.MeshBuilder.CreateCylinder("cylinder", {},scene);
+
+        /*
+        cylinder.position.y = -.02;
+        cylinder.position.z = -1.25;
+        cylinder.position.x = 0;
+
+        cylinder.material = waterMat; 
+        
+        
+        
+        
+
+        const cylinder2 = BABYLON.MeshBuilder.CreateCylinder("cylinder", {height:.1, diameter:1.5}, scene);
+
+        cylinder2.position.y = -.02;
+        cylinder2.position.z = -1.25;
+        cylinder2.position.x = -.5;
+
+        cylinder2.material = waterMat; 
+
+*/        
+      
+       /* const plane = BABYLON.MeshBuilder.CreatePlane("plane", scene);
+
+        plane.position.y = 0;
+        plane.position.x = 0;
+        plane.position.z = 2;
+
+        */
+
+
+       /* const myParticleSystem = new BABYLON.ParticleSystem("particles",2000);
+       // myParticleSystem.particleTexture = new BABYLON.Texture("");
+        myParticleSystem.emitter = box;
+        myParticleSystem.start();*/
+        
+
+        // Our built-in 'ground' shape.
+        var ground = BABYLON.MeshBuilder.CreateGround("ground",{ width: 6, height: 6 },scene);
+        ground.material = groundMat;
+
+        return scene;
+      };
+      
+      const canvas = document.getElementById("renderCanvas"); // Get the canvas element
+      const engine = new BABYLON.Engine(canvas, true); // Generate the BABYLON 3D engine
+
+      // Add your code here matching the playground format
+
+      const scene = createScene(); //Call the createScene function
+
+      // Register a render loop to repeatedly render the scene
+      engine.runRenderLoop(function () {
+        scene.render();
+      });
+
+      // Watch for browser/canvas resize events
+      window.addEventListener("resize", function () {
+        engine.resize();
+      });
+    </script>
+  </body>
+</html>
